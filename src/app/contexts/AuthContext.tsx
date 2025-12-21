@@ -1,11 +1,13 @@
-import React, {
-  createContext,
-  useContext,
-  useState,
-  type ReactNode,
-} from "react";
+import { createContext, useContext, useState, type ReactNode } from "react";
 
-export type UserRole = "admin" | "user" | "viewer";
+export type UserRole =
+  | "SOC Analyst"
+  | "SOC Lead"
+  | "CISO"
+  | "Security Engineer"
+  | "Threat Researcher"
+  | "Compliance/GRC"
+  | "Platform Admin";
 
 export interface User {
   id: string;
@@ -26,9 +28,13 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 const roleHierarchy: Record<UserRole, number> = {
-  viewer: 1,
-  user: 2,
-  admin: 3,
+  "SOC Analyst": 1,
+  "SOC Lead": 2,
+  "Security Engineer": 3,
+  "Threat Researcher": 4,
+  "Compliance/GRC": 5,
+  CISO: 6,
+  "Platform Admin": 7,
 };
 
 export function AuthProvider({ children }: { children: ReactNode }) {
@@ -36,8 +42,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const login = async (
     email: string,
-    password: string,
-    role: UserRole = "user"
+    password: string = "",
+    role: UserRole = "SOC Analyst"
   ) => {
     // Mock authentication - in production, this would call your backend
     await new Promise((resolve) => setTimeout(resolve, 800));

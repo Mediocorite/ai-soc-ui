@@ -6,7 +6,7 @@ import { motion } from "motion/react";
 export function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [selectedRole, setSelectedRole] = useState<UserRole>("user");
+  const [selectedRole, setSelectedRole] = useState<UserRole>("SOC Analyst");
   const [isLoading, setIsLoading] = useState(false);
   const { login } = useAuth();
 
@@ -23,7 +23,7 @@ export function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-background to-muted px-4 py-8">
+    <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-background via-background to-muted px-4 py-8">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -35,7 +35,7 @@ export function LoginPage() {
             <motion.div
               animate={{ rotate: [0, 360] }}
               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              className="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-primary to-primary/60 rounded-2xl flex items-center justify-center"
+              className="w-14 h-14 sm:w-16 sm:h-16 bg-linear-to-br from-primary to-primary/60 rounded-2xl flex items-center justify-center"
             >
               <Sparkles className="w-7 h-7 sm:w-8 sm:h-8 text-primary-foreground" />
             </motion.div>
@@ -43,7 +43,7 @@ export function LoginPage() {
 
           <h1 className="text-center mb-2">Welcome Back</h1>
           <p className="text-center text-muted-foreground mb-6 sm:mb-8 text-sm sm:text-base">
-            Sign in to your AI workspace
+            Sign in to your AI SOC
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
@@ -86,7 +86,17 @@ export function LoginPage() {
             <div>
               <label className="block mb-2 text-foreground">Role (Demo)</label>
               <div className="grid grid-cols-3 gap-2">
-                {(["viewer", "user", "admin"] as UserRole[]).map((role) => (
+                {(
+                  [
+                    "SOC Analyst",
+                    "SOC Lead",
+                    "CISO",
+                    "Security Engineer",
+                    "Threat Researcher",
+                    "Compliance & GRC",
+                    "Platform Admin",
+                  ] as UserRole[]
+                ).map((role) => (
                   <button
                     key={role}
                     type="button"
