@@ -16,7 +16,14 @@ import {
 } from "lucide-react";
 import type { UserRole } from "../types/auth";
 
-export type DashboardType = "analyst" | "lead" | "standard";
+export type DashboardType =
+  | "SOCAnalystDashboard"
+  | "SOCLeadDashboard"
+  | "PlatformAdminDashboard"
+  | "CISODashboard"
+  | "SecurityEngineerDashboard"
+  | "ThreatResearcherDashboard"
+  | "ComplianceGRCDashboard";
 
 export interface NavItemConfig {
   icon: any;
@@ -54,34 +61,34 @@ const ADMIN_NAV: NavItemConfig[] = [
 
 export const roleConfig: Record<UserRole, RoleConfiguration> = {
   "SOC Analyst": {
-    dashboard: "analyst",
+    dashboard: "SOCAnalystDashboard",
     navigation: ANALYST_NAV,
   },
   "SOC Lead": {
-    dashboard: "lead",
+    dashboard: "SOCLeadDashboard",
     navigation: LEAD_NAV,
   },
   "Platform Admin": {
-    dashboard: "standard",
+    dashboard: "PlatformAdminDashboard",
     navigation: ADMIN_NAV,
   },
   CISO: {
-    dashboard: "standard",
+    dashboard: "CISODashboard",
     navigation: [
       ...COMMON_NAV,
       { icon: Lock, label: "Security", shortcut: "P", href: "/security" },
     ],
   },
   "Security Engineer": {
-    dashboard: "standard",
+    dashboard: "SecurityEngineerDashboard",
     navigation: LEAD_NAV,
   },
   "Threat Researcher": {
-    dashboard: "standard",
+    dashboard: "ThreatResearcherDashboard",
     navigation: ANALYST_NAV,
   },
   "Compliance/GRC": {
-    dashboard: "standard",
+    dashboard: "ComplianceGRCDashboard",
     navigation: [
       ...COMMON_NAV,
       {
@@ -95,7 +102,7 @@ export const roleConfig: Record<UserRole, RoleConfiguration> = {
 };
 
 export const defaultRoleConfig: RoleConfiguration = {
-  dashboard: "standard",
+  dashboard: "SOCAnalystDashboard",
   navigation: COMMON_NAV,
 };
 
