@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { useAuth } from "../hooks/useAuth";
-import type { UserRole } from "../types/auth";
-import { Link as RouterLink } from "../router";
+import { useAuth } from "../../hooks/useAuth";
+import type { UserRole } from "../../types/auth";
+import { Link as RouterLink } from "../../router";
 import { useTheme } from "next-themes";
 import { motion, AnimatePresence } from "motion/react";
 import {
@@ -42,7 +42,7 @@ const navItems: NavItem[] = [
     icon: BarChart3,
     label: "Analytics",
     shortcut: "L",
-    href: "#analytics",
+    href: "/analytics",
     minRole: "SOC Analyst",
   },
   { icon: FileText, label: "Documents", shortcut: "F", href: "#documents" },

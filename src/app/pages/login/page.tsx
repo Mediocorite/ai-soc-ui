@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useAuth } from "../hooks/useAuth";
-import type { UserRole } from "../types/auth";
+import { useAuth } from "../../hooks/useAuth";
+import type { UserRole } from "../../types/auth";
 import { Sparkles, Lock, Mail } from "lucide-react";
 import { motion } from "motion/react";
 

@@ -7,10 +7,12 @@ import {
   Outlet,
   Link,
 } from "@tanstack/react-router";
-import { LoginPage } from "./components/LoginPage";
-import { Sidebar } from "./components/Sidebar";
-import { Dashboard } from "./components/Dashboard";
-import { useAuth } from "./contexts/AuthContext";
+import { LoginPage } from "./pages/login/page";
+import { Sidebar } from "./components/layout/Sidebar";
+import { Dashboard } from "./pages/dashboard/page";
+import { AIStudioPage } from "./pages/ai-studio/page";
+import { AnalyticsPage } from "./pages/analytics/page";
+import { useAuth } from "./hooks/useAuth";
 
 // Root layout component that uses Auth to guard pages and render layout
 function RootLayout() {
@@ -42,13 +44,13 @@ const dashboardRoute = new Route({
 const aiStudioRoute = new Route({
   getParentRoute: () => rootRoute,
   path: "ai-studio",
-  component: () => <div className="p-6">AI Studio (coming soon)</div>,
+  component: AIStudioPage,
 });
 
 const analyticsRoute = new Route({
   getParentRoute: () => rootRoute,
   path: "analytics",
-  component: () => <div className="p-6">Analytics</div>,
+  component: AnalyticsPage,
 });
 
 // Build route tree and router

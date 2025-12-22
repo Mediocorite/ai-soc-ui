@@ -1,6 +1,6 @@
 // import React from "react";
 import { renderWithAuth, screen, fireEvent, waitFor } from "../test-utils";
-import { LoginPage } from "../app/components/LoginPage";
+import { LoginPage } from "../app/pages/login/page";
 import { useAuth } from "../app/hooks/useAuth";
 
 // Small consumer to show auth state after login
