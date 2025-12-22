@@ -26,48 +26,9 @@ import {
   CheckCircle,
   Briefcase,
 } from "lucide-react";
+import { getRoleConfig } from "../../config/roleConfig";
 
-interface NavItem {
-  icon: React.ElementType;
-  label: string;
-  shortcut: string;
-  href: string;
-  minRole?: UserRole;
-}
-
-const navItems: NavItem[] = [
-  { icon: Home, label: "Dashboard", shortcut: "D", href: "/" },
-  { icon: Sparkles, label: "AI Studio", shortcut: "A", href: "/ai-studio" },
-  {
-    icon: BarChart3,
-    label: "Analytics",
-    shortcut: "L",
-    href: "/analytics",
-    minRole: "SOC Analyst",
-  },
-  { icon: FileText, label: "Documents", shortcut: "F", href: "#documents" },
-  {
-    icon: Database,
-    label: "Data",
-    shortcut: "T",
-    href: "#data",
-    minRole: "SOC Analyst",
-  },
-  {
-    icon: Users,
-    label: "Team",
-    shortcut: "M",
-    href: "#team",
-    minRole: "Platform Admin",
-  },
-  {
-    icon: Settings,
-    label: "Settings",
-    shortcut: "S",
-    href: "#settings",
-    minRole: "Platform Admin",
-  },
-];
+// navItems are now managed in src/app/config/roleConfig.ts
 
 export function Sidebar() {
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -126,10 +87,11 @@ export function Sidebar() {
 
       // Navigation shortcuts (Cmd/Ctrl + Shift + Key)
       if ((e.metaKey || e.ctrlKey) && e.shiftKey) {
-        const item = navItems.find(
+        const { navigation } = getRoleConfig(user?.role);
+        const item = navigation.find(
           (item) => item.shortcut.toLowerCase() === e.key.toLowerCase()
         );
-        if (item && (!item.minRole || hasPermission(item.minRole))) {
+        if (item) {
           e.preventDefault();
           setActiveItem(item.label);
           setIsMobileOpen(false);
@@ -249,10 +211,7 @@ export function Sidebar() {
         {/* Navigation */}
         <nav className="flex-1 p-3 overflow-y-auto">
           <div className="space-y-1">
-            {navItems.map((item) => {
-              const canAccess = !item.minRole || hasPermission(item.minRole);
-              if (!canAccess) return null;
-
+            {getRoleConfig(user?.role).navigation.map((item) => {
               const Icon = item.icon;
               const isActive = activeItem === item.label;
 
