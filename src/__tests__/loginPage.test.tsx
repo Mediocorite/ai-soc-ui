@@ -1,7 +1,7 @@
 // import React from "react";
-import { renderWithAuth, screen, fireEvent } from "../test-utils";
+import { renderWithAuth, screen, fireEvent, waitFor } from "../test-utils";
 import { LoginPage } from "../app/components/LoginPage";
-import { useAuth } from "../app/contexts/AuthContext";
+import { useAuth } from "../app/hooks/useAuth";
 
 // Small consumer to show auth state after login
 function AuthState() {
@@ -27,10 +27,18 @@ test("LoginPage performs login and updates auth context", async () => {
   fireEvent.change(emailInput, { target: { value: "tester@example.com" } });
 
   const signIn = screen.getByRole("button", { name: /sign in/i });
-  fireEvent.click(signIn);
+  const form = screen.getByTestId("login-form");
+  fireEvent.submit(form);
 
-  const auth = await screen.findByTestId("auth");
-  expect(auth).toHaveTextContent("true");
+  // Verify loading state is triggered
+  expect(signIn).toHaveTextContent(/signing in/i);
+
+  await waitFor(
+    () => {
+      expect(screen.getByTestId("auth")).toHaveTextContent("true");
+    },
+    { timeout: 5000 }
+  );
 
   const name = await screen.findByTestId("name");
   expect(name).toHaveTextContent("tester");

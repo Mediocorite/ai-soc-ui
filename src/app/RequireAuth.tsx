@@ -1,5 +1,6 @@
-import { ReactNode } from "react";
-import { useAuth } from "./contexts/AuthContext";
+import { type ReactNode } from "react";
+import { useAuth } from "./hooks/useAuth";
+import type { UserRole } from "./types/auth";
 
 interface RequireAuthProps {
   children: ReactNode;
@@ -22,7 +23,7 @@ export function RequireAuth({
     return null;
   }
 
-  if (requiredRole && !hasPermission(requiredRole as any)) {
+  if (requiredRole && !hasPermission(requiredRole as UserRole)) {
     // Deny access UI — can be replaced with redirect when router is wired
     return <div className="p-8">Access denied: insufficient permissions</div>;
   }

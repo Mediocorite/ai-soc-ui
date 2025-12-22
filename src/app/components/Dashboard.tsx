@@ -121,7 +121,7 @@ export function Dashboard() {
           </div>
 
           {/* Admin-only section */}
-          {hasPermission("admin") && (
+          {hasPermission("Platform Admin") && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -231,7 +231,7 @@ export function Dashboard() {
           </motion.div>
 
           {/* Role-based message */}
-          {hasPermission("viewer") && !hasPermission("user") && (
+          {hasPermission("SOC Analyst") && !hasPermission("Platform Admin") && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}

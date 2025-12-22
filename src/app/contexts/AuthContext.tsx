@@ -1,31 +1,6 @@
-import { createContext, useContext, useState, type ReactNode } from "react";
-
-export type UserRole =
-  | "SOC Analyst"
-  | "SOC Lead"
-  | "CISO"
-  | "Security Engineer"
-  | "Threat Researcher"
-  | "Compliance/GRC"
-  | "Platform Admin";
-
-export interface User {
-  id: string;
-  email: string;
-  name: string;
-  role: UserRole;
-  avatar?: string;
-}
-
-interface AuthContextType {
-  user: User | null;
-  login: (email: string, password: string, role?: UserRole) => Promise<void>;
-  logout: () => void;
-  isAuthenticated: boolean;
-  hasPermission: (requiredRole: UserRole) => boolean;
-}
-
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+import { useState, type ReactNode } from "react";
+import type { User, UserRole } from "../types/auth";
+import { AuthContext } from "../hooks/useAuth";
 
 const roleHierarchy: Record<UserRole, number> = {
   "SOC Analyst": 1,
@@ -42,6 +17,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const login = async (
     email: string,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     password: string = "",
     role: UserRole = "SOC Analyst"
   ) => {
@@ -83,10 +59,4 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   );
 }
 
-export function useAuth() {
-  const context = useContext(AuthContext);
-  if (context === undefined) {
-    throw new Error("useAuth must be used within an AuthProvider");
-  }
-  return context;
-}
+export { AuthContext };

@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useAuth, type UserRole } from "../contexts/AuthContext";
+import { useAuth } from "../hooks/useAuth";
+import type { UserRole } from "../types/auth";
 import { Sparkles, Lock, Mail } from "lucide-react";
 import { motion } from "motion/react";
 
@@ -46,7 +47,11 @@ export function LoginPage() {
             Sign in to your AI SOC
           </p>
 
-          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
+          <form
+            data-testid="login-form"
+            onSubmit={handleSubmit}
+            className="space-y-4 sm:space-y-5"
+          >
             <div>
               <label htmlFor="email" className="block mb-2 text-foreground">
                 Email

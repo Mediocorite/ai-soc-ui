@@ -1,7 +1,7 @@
 import React from "react";
 import { renderWithAuth, screen } from "../test-utils";
 import RequireAuth from "../app/RequireAuth";
-import { useAuth } from "../app/contexts/AuthContext";
+import { useAuth } from "../app/hooks/useAuth";
 
 function ProtectedChild() {
   return <div>Protected Content</div>;

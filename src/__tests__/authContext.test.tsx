@@ -1,5 +1,5 @@
-import { renderWithAuth, screen, waitFor } from "../test-utils";
-import { useAuth } from "../app/contexts/AuthContext";
+import { renderWithAuth, screen, waitFor, fireEvent } from "../test-utils";
+import { useAuth } from "../app/hooks/useAuth";
 
 function TestConsumer() {
   const { isAuthenticated, user, login, logout } = useAuth();
@@ -22,7 +22,7 @@ test("AuthProvider login/logout updates context", async () => {
 
   // Click login and wait for async login to complete (mock delay in provider)
   const loginBtn = screen.getByText("login");
-  loginBtn.click();
+  fireEvent.click(loginBtn);
 
   // Wait for the async login to complete; allow a longer timeout for CI
   await waitFor(
@@ -39,6 +39,9 @@ test("AuthProvider login/logout updates context", async () => {
 
   // Logout should clear state
   const logoutBtn = screen.getByText("logout");
-  logoutBtn.click();
-  expect(screen.getByTestId("auth")).toHaveTextContent("false");
+  fireEvent.click(logoutBtn);
+
+  await waitFor(() =>
+    expect(screen.getByTestId("auth")).toHaveTextContent("false")
+  );
 });

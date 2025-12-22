@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { useAuth, type UserRole } from "../contexts/AuthContext";
+import { useAuth } from "../hooks/useAuth";
+import type { UserRole } from "../types/auth";
 import { Link as RouterLink } from "../router";
 import { useTheme } from "next-themes";
 import { motion, AnimatePresence } from "motion/react";
@@ -259,7 +260,7 @@ export function Sidebar() {
                 <motion.div key={item.label} whileHover={{ x: 4 }}>
                   <RouterLink
                     to={item.href}
-                    className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all inline-flex ${
+                    className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all ${
                       isActive
                         ? "bg-sidebar-primary text-sidebar-primary-foreground shadow-lg"
                         : "text-sidebar-foreground hover:bg-sidebar-accent"
@@ -288,7 +289,7 @@ export function Sidebar() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 20 }}
-                className="mt-6 p-4 bg-gradient-to-br from-sidebar-primary/10 to-sidebar-primary/5 rounded-xl border border-sidebar-border"
+                className="mt-6 p-4 bg-linear-to-br from-sidebar-primary/10 to-sidebar-primary/5 rounded-xl border border-sidebar-border"
               >
                 <h4 className="text-sidebar-foreground mb-3">Quick Actions</h4>
                 <div className="space-y-2">
@@ -371,9 +372,4 @@ export function Sidebar() {
       </motion.aside>
     </>
   );
-}
-
-// Export the setter for mobile menu
-export function useSidebarToggle() {
-  return { toggleMobile: () => {} };
 }

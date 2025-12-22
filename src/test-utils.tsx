@@ -9,4 +9,10 @@ export function renderWithAuth(
   return render(<AuthProvider>{ui}</AuthProvider>, options);
 }
 
-export * from "@testing-library/react";
+export {
+  render,
+  screen,
+  fireEvent,
+  waitFor,
+  within,
+} from "@testing-library/react";
