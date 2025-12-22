@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useAuth, type UserRole } from "../contexts/AuthContext";
+import { Link as RouterLink } from "../router";
 import { useTheme } from "next-themes";
 import { motion, AnimatePresence } from "motion/react";
 import {
@@ -34,8 +35,8 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { icon: Home, label: "Dashboard", shortcut: "D", href: "#dashboard" },
-  { icon: Sparkles, label: "AI Studio", shortcut: "A", href: "#ai-studio" },
+  { icon: Home, label: "Dashboard", shortcut: "D", href: "/" },
+  { icon: Sparkles, label: "AI Studio", shortcut: "A", href: "/ai-studio" },
   {
     icon: BarChart3,
     label: "Analytics",
@@ -255,27 +256,27 @@ export function Sidebar() {
               const isActive = activeItem === item.label;
 
               return (
-                <motion.button
-                  key={item.label}
-                  onClick={() => handleNavClick(item.label)}
-                  whileHover={{ scale: 1.02, x: 4 }}
-                  whileTap={{ scale: 0.98 }}
-                  className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all ${
-                    isActive
-                      ? "bg-sidebar-primary text-sidebar-primary-foreground shadow-lg"
-                      : "text-sidebar-foreground hover:bg-sidebar-accent"
-                  }`}
-                >
-                  <Icon size={20} />
-                  {!isCollapsed && (
-                    <>
-                      <span className="flex-1 text-left">{item.label}</span>
-                      <kbd className="hidden sm:inline-block px-2 py-0.5 text-xs bg-sidebar-accent text-sidebar-accent-foreground rounded border border-sidebar-border font-medium">
-                        ⌘⇧{item.shortcut}
-                      </kbd>
-                    </>
-                  )}
-                </motion.button>
+                <motion.div key={item.label} whileHover={{ x: 4 }}>
+                  <RouterLink
+                    to={item.href}
+                    className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all inline-flex ${
+                      isActive
+                        ? "bg-sidebar-primary text-sidebar-primary-foreground shadow-lg"
+                        : "text-sidebar-foreground hover:bg-sidebar-accent"
+                    }`}
+                    onClick={() => handleNavClick(item.label)}
+                  >
+                    <Icon size={20} />
+                    {!isCollapsed && (
+                      <>
+                        <span className="flex-1 text-left">{item.label}</span>
+                        <kbd className="hidden sm:inline-block px-2 py-0.5 text-xs bg-sidebar-accent text-sidebar-accent-foreground rounded border border-sidebar-border font-medium">
+                          ⌘⇧{item.shortcut}
+                        </kbd>
+                      </>
+                    )}
+                  </RouterLink>
+                </motion.div>
               );
             })}
           </div>
