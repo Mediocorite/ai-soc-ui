@@ -15,12 +15,7 @@ const roleHierarchy: Record<UserRole, number> = {
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
 
-  const login = async (
-    email: string,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    password: string = "",
-    role: UserRole = "SOC Analyst"
-  ) => {
+  const login = async (email: string, role: UserRole = "SOC Analyst") => {
     // Mock authentication - in production, this would call your backend
     await new Promise((resolve) => setTimeout(resolve, 800));
 

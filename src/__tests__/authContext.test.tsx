@@ -7,7 +7,7 @@ function TestConsumer() {
     <div>
       <span data-testid="auth">{isAuthenticated ? "true" : "false"}</span>
       <span data-testid="role">{user?.role ?? ""}</span>
-      <button onClick={() => login("tester@example.com", "", "Platform Admin")}>
+      <button onClick={() => login("tester@example.com", "Platform Admin")}>
         login
       </button>
       <button onClick={() => logout()}>logout</button>

@@ -15,7 +15,7 @@ export function LoginPage() {
     e.preventDefault();
     setIsLoading(true);
     try {
-      await login(email, password, selectedRole);
+      await login(email, selectedRole);
     } catch (error) {
       console.error("Login failed:", error);
     } finally {

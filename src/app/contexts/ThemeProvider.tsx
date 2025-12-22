@@ -1,5 +1,5 @@
-import { ThemeProvider as NextThemesProvider } from 'next-themes';
-import { ReactNode } from 'react';
+import { ThemeProvider as NextThemesProvider } from "next-themes";
+import type { ReactNode } from "react";
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   return (
@@ -7,7 +7,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       attribute="class"
       defaultTheme="light"
       enableSystem={false}
-      themes={['light', 'dark']}
+      themes={["light", "dark"]}
     >
       {children}
     </NextThemesProvider>

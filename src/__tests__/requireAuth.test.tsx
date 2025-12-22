@@ -21,7 +21,7 @@ test("RequireAuth shows access denied when role insufficient", async () => {
   function LoginOnMount() {
     const { login } = useAuth();
     React.useEffect(() => {
-      login("low@example.com", "", "SOC Analyst");
+      login("low@example.com", "SOC Analyst");
     }, [login]);
     return null;
   }
