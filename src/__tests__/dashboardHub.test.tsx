@@ -19,7 +19,7 @@ test("DashboardHub renders AnalystDashboard for SOC Analyst", async () => {
     </>
   );
 
-  const heading = await screen.findByText(/Analyst Command Center/i);
+  const heading = await screen.findByText(/No Alert Selected/i);
   expect(heading).toBeInTheDocument();
 });
 
@@ -39,7 +39,7 @@ test("DashboardHub renders LeadDashboard for SOC Lead", async () => {
     </>
   );
 
-  const heading = await screen.findByText(/SOC Lead Overview/i);
+  const heading = await screen.findByText(/Sentinel Command/i);
   expect(heading).toBeInTheDocument();
 });
 
@@ -59,6 +59,6 @@ test("DashboardHub renders StandardDashboard for Platform Admin", async () => {
     </>
   );
 
-  const heading = await screen.findByText(/Welcome back/i);
+  const heading = await screen.findByText(/Platform Admin Dashboard/i);
   expect(heading).toBeInTheDocument();
 });
