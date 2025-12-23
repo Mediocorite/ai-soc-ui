@@ -18,17 +18,32 @@ export default function SocAnalystDashboard() {
   };
 
   return (
-    <div className="flex-1 flex overflow-hidden bg-background">
+    <main className="flex-1 flex overflow-hidden bg-background h-full">
       <AlertFeed
         alerts={MOCK_ALERTS}
         selectedId={selectedAlert?.id || ""}
         onSelect={setSelectedAlert}
       />
 
-      <div className="flex-1 flex flex-col min-w-0 bg-slate-950 relative">
+      <div className="flex-1 overflow-auto bg-slate-950 relative">
         {actionFeedback && (
           <div className="absolute top-4 left-1/2 -translate-x-1/2 z-50 px-4 py-2 bg-emerald-500 text-white rounded-full text-sm font-bold shadow-lg shadow-emerald-500/20 animate-in fade-in slide-in-from-top-4">
-            {actionFeedback}
+            <div className="bg-indigo-600 text-white px-4 py-2 rounded-full text-xs font-bold shadow-xl shadow-indigo-900/40 flex items-center gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              {actionFeedback}
+            </div>
           </div>
         )}
 
@@ -68,6 +83,6 @@ export default function SocAnalystDashboard() {
       </div>
 
       {selectedAlert && <AIChat key={selectedAlert.id} alert={selectedAlert} />}
-    </div>
+    </main>
   );
 }
