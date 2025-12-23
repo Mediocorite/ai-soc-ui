@@ -25,7 +25,7 @@ export default function SocAnalystDashboard() {
         onSelect={setSelectedAlert}
       />
 
-      <div className="flex-1 overflow-auto bg-slate-950 relative">
+      <div className="flex-1 overflow-auto bg-white dark:bg-slate-950 relative">
         {actionFeedback && (
           <div className="absolute top-4 left-1/2 -translate-x-1/2 z-50 px-4 py-2 bg-emerald-500 text-white rounded-full text-sm font-bold shadow-lg shadow-emerald-500/20 animate-in fade-in slide-in-from-top-4">
             <div className="bg-indigo-600 text-white px-4 py-2 rounded-full text-xs font-bold shadow-xl shadow-indigo-900/40 flex items-center gap-2">
@@ -52,7 +52,7 @@ export default function SocAnalystDashboard() {
         ) : (
           <div className="flex-1 flex items-center justify-center text-slate-600 p-8 text-center">
             <div className="max-w-md">
-              <div className="w-16 h-16 bg-slate-900 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-slate-800">
+              <div className="w-16 h-16 bg-blue-200 dark:bg-slate-900 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-slate-800">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="32"
@@ -70,7 +70,7 @@ export default function SocAnalystDashboard() {
                   <path d="M12 16h.01" />
                 </svg>
               </div>
-              <h2 className="text-xl font-bold text-slate-400 mb-2">
+              <h2 className="text-xl font-bold text-shadow-amber-50 dark:text-slate-400 mb-2">
                 No Alert Selected
               </h2>
               <p className="text-sm">

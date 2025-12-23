@@ -375,6 +375,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onSelectIncident }) => {
             <button
               onClick={() => setActiveModal("Analyst On-Duty")}
               className="text-ey-blue hover:bg-blue-50 p-1.5 rounded-lg transition-colors"
+              title="View Analyst On-Duty Details"
             >
               <svg
                 className="w-4 h-4"

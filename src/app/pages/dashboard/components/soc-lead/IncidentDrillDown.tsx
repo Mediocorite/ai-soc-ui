@@ -48,6 +48,7 @@ const IncidentDrillDown: React.FC<IncidentDrillDownProps> = ({
         <div className="flex items-center space-x-4">
           <button
             onClick={onBack}
+            title="Go back to incidents list"
             className="p-2 hover:bg-muted rounded-lg transition-colors border border-transparent hover:border-border"
           >
             <svg
