@@ -5,13 +5,7 @@ import { Link as RouterLink } from "../../router";
 import { useTheme } from "next-themes";
 import { motion, AnimatePresence } from "motion/react";
 import {
-  Home,
   Sparkles,
-  BarChart3,
-  Settings,
-  Users,
-  FileText,
-  Database,
   ChevronLeft,
   ChevronRight,
   Moon,
@@ -101,7 +95,7 @@ export function Sidebar() {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [theme, setTheme, hasPermission, isMobile]);
+  }, [theme, setTheme, hasPermission, isMobile, user?.role]);
 
   // Close mobile menu on escape
   useEffect(() => {

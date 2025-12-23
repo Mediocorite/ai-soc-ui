@@ -4,15 +4,11 @@ import {
   BarChart3,
   Users,
   Settings,
-  FileText,
   Database,
-  Shield,
-  Zap,
-  Eye,
   Lock,
   AlertCircle,
   CheckCircle,
-  Briefcase,
+  type LucideIcon,
 } from "lucide-react";
 import type { UserRole } from "../types/auth";
 
@@ -26,7 +22,7 @@ export type DashboardType =
   | "ComplianceGRCDashboard";
 
 export interface NavItemConfig {
-  icon: any;
+  icon: LucideIcon;
   label: string;
   shortcut: string;
   href: string;
